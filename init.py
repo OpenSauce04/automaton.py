@@ -5,5 +5,5 @@ def init():
     glob.worldSize=3000
     glob.cycleno=0
     glob.cellno=0
-    print(" Generating World ", end="")
+    print(" Generating World ")
     glob.cells=generateWorld()
