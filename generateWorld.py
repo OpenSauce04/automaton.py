@@ -8,12 +8,12 @@ def generateTile():
         return 'f'
     return 'g'
 def generateWorld():
-    world=[['g']*glob.worldSize for i in range(glob.worldSize)]
+    glob.world=[['g']*glob.worldSize for i in range(glob.worldSize)]
     counter=0
     ppercentage=''
     for h in range(glob.worldSize):
         for w in range(glob.worldSize):
-            world[w][h]=generateTile()
+            glob.world[w][h]=generateTile()
             counter+=1
         percentage=floor(100*counter/glob.worldSize**2)
         if (percentage!=ppercentage):
