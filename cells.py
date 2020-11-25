@@ -70,14 +70,13 @@ def cycle():
                         cellsnew[w][h]=cells[w][h]
                     else:
                         cellsnew[nw][nh]=cells[w][h]
-                        
                 print("C"+str(cells[w][h][0])+": Moved to "+str(w)+", "+str(h)+"; Now has "+str(cells[w][h][1])+" food")
                 if (glob.world[w][h]=='f'):
                     print("C"+str(cells[w][h][0])+": Reached food")
+                    cellsnew[w][h][2] = -1
                     glob.world[w][h]='g'
                     cells[w][h][1]+=20
                     if (cells[w][h][1]>100): # If enough food to create offspring
-                        cells[w][h][1]-=50
                         # TODO: Implement offspring
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
