@@ -85,7 +85,7 @@ def cycle():
                         elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
-                    print("C"+str(cells[w][h][0])+": Died")
+                    print("C"+str(cells[w][h][0])+": Starved to death")
                     cellsnew[w][h]=[0,0]
     cells=cellsnew
     if (glob.cellno==0):
