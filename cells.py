@@ -43,6 +43,20 @@ def cycle():
         for w in range(glob.worldSize):
             if (cells[w][h][0]!=0):
                 glob.cellno+=1
+                if (glob.world[w][h] == 'f'):
+                    print("C"+str(cells[w][h][0])+": Reached food")
+                    cells[w][h][2] = -1
+                    glob.world[w][h]='g'
+                    cells[w][h][1]+=20
+                    if (cells[w][h][1]>100): # If enough food to create offspring
+                        if (cells[w][h+1][0]==0): cells[w][h][1]-=50; cells[w][h+1]=newcell()
+                        elif (cells[w][h-1][0]==0): cells[w][h][1]-=50; cells[w][h-1]=newcell()
+                        elif (cells[w+1][h][0]==0): cells[w][h][1]-=50; cells[w+1][h]=newcell()
+                        elif (cells[w-1][h][0]==0): cells[w][h][1]-=50; cells[w-1][h]=newcell()
+                        elif (cells[w+1][h+1][0]==0): cells[w][h][1]-=50; cells[w+1][h+1]=newcell()
+                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
+                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
+                        elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
                 if(cells[w][h][2]==-1):
                     try:
                         foodlocation=find.nearestFood(w,h)
@@ -69,20 +83,6 @@ def cycle():
                     else:
                         cellsnew[nw][nh]=cells[w][h]
                 print("C"+str(cells[w][h][0])+": Moved to "+str(w)+", "+str(h)+"; Now has "+str(cells[w][h][1])+" food")
-                if (glob.world[w][h]=='f'):
-                    print("C"+str(cells[w][h][0])+": Reached food")
-                    cellsnew[w][h][2] = -1
-                    glob.world[w][h]='g'
-                    cells[w][h][1]+=20
-                    if (cells[w][h][1]>100): # If enough food to create offspring
-                        if (cells[w][h+1][0]==0): cells[w][h][1]-=50; cells[w][h+1]=newcell()
-                        elif (cells[w][h-1][0]==0): cells[w][h][1]-=50; cells[w][h-1]=newcell()
-                        elif (cells[w+1][h][0]==0): cells[w][h][1]-=50; cells[w+1][h]=newcell()
-                        elif (cells[w-1][h][0]==0): cells[w][h][1]-=50; cells[w-1][h]=newcell()
-                        elif (cells[w+1][h+1][0]==0): cells[w][h][1]-=50; cells[w+1][h+1]=newcell()
-                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
-                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
-                        elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
                     print("C"+str(cells[w][h][0])+": Starved to death")
