@@ -11,7 +11,6 @@ def newcell():
     return [nextid,40,-1,-1]
 cells=[[[0 for x in range(4)] for y in range(glob.worldSize)] for z in range(glob.worldSize)]
 cells[int(glob.worldSize/2)][int(glob.worldSize/2)]=newcell()
-nextid+=1
 
 def ucase(w,h):
     if cells[w][h+1][0]!=0:
@@ -77,7 +76,14 @@ def cycle():
                     glob.world[w][h]='g'
                     cells[w][h][1]+=20
                     if (cells[w][h][1]>100): # If enough food to create offspring
-                        # TODO: Implement offspring
+                        if (cells[w][h+1][0]==0): cells[w][h][1]-=50; cells[w][h+1]=newcell()
+                        elif (cells[w][h-1][0]==0): cells[w][h][1]-=50; cells[w][h-1]=newcell()
+                        elif (cells[w+1][h][0]==0): cells[w][h][1]-=50; cells[w+1][h]=newcell()
+                        elif (cells[w-1][h][0]==0): cells[w][h][1]-=50; cells[w-1][h]=newcell()
+                        elif (cells[w+1][h+1][0]==0): cells[w][h][1]-=50; cells[w+1][h+1]=newcell()
+                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
+                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
+                        elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
                     print("C"+str(cells[w][h][0])+": Died")
