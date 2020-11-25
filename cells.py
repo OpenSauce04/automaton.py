@@ -76,8 +76,9 @@ def cycle():
                     print("C"+str(cells[w][h][0])+": Reached food")
                     glob.world[w][h]='g'
                     cells[w][h][1]+=20
-                    if (cells[w][h][1]>100):
+                    if (cells[w][h][1]>100): # If enough food to create offspring
                         cells[w][h][1]-=50
+                        # TODO: Implement offspring
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
                     print("C"+str(cells[w][h][0])+": Died")
