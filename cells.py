@@ -61,7 +61,7 @@ def cycle():
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
                     print("C"+str(cells[w][h][0])+": Died")
-                    newcells[w][h]=[0,0]
+                    cellsnew[w][h]=[0,0]
     cells=cellsnew
     if (glob.cellno==0):
         print("All cells died")
