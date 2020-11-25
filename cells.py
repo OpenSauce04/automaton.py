@@ -1,6 +1,7 @@
 from random import choice
 import glob
 import find
+import move
 global cellsnew
 global nextid
 nextid=0
@@ -61,8 +62,15 @@ def cycle():
                     movefunction=choice(list(moveswitch.values()))
                     movefunction(w,h)
                 else: # Knows food whereabouts, move towards
-                    print()
-                    #move.moveTowards(w,h,cells[w][h][2],cells[w][h][3])
+                    newcoords=move.moveTowards(w,h,cells[w][h][2],cells[w][h][3])
+                    nw=newcoords[0]
+                    nh=newcoords[1]
+                    print(newcoords)
+                    if cells[nw][nh][0]!=0:
+                        cellsnew[w][h]=cells[w][h]
+                    else:
+                        cellsnew[nw][nh]=cells[w][h]
+                        
                 print("C"+str(cells[w][h][0])+": Moved to "+str(w)+", "+str(h)+"; Now has "+str(cells[w][h][1])+" food")
                 if (glob.world[w][h]=='f'):
                     print("C"+str(cells[w][h][0])+": Reached food")
