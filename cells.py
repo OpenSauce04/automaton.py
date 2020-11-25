@@ -48,15 +48,18 @@ def cycle():
                     cells[w][h][2] = -1
                     glob.world[w][h]='g'
                     cells[w][h][1]+=20
-                    if (cells[w][h][1]>100): # If enough food to create offspring
-                        if (cells[w][h+1][0]==0): cells[w][h][1]-=50; cells[w][h+1]=newcell()
-                        elif (cells[w][h-1][0]==0): cells[w][h][1]-=50; cells[w][h-1]=newcell()
-                        elif (cells[w+1][h][0]==0): cells[w][h][1]-=50; cells[w+1][h]=newcell()
-                        elif (cells[w-1][h][0]==0): cells[w][h][1]-=50; cells[w-1][h]=newcell()
-                        elif (cells[w+1][h+1][0]==0): cells[w][h][1]-=50; cells[w+1][h+1]=newcell()
-                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
-                        elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
-                        elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
+                    for x in range(1): # I know this code is weird but I couldn't think of a better way to do it
+                        if (cells[w][h][1]>100): # If enough food to create offspring
+                            if (cells[w][h+1][0]==0): cells[w][h][1]-=50; cells[w][h+1]=newcell()
+                            elif (cells[w][h-1][0]==0): cells[w][h][1]-=50; cells[w][h-1]=newcell()
+                            elif (cells[w+1][h][0]==0): cells[w][h][1]-=50; cells[w+1][h]=newcell()
+                            elif (cells[w-1][h][0]==0): cells[w][h][1]-=50; cells[w-1][h]=newcell()
+                            elif (cells[w+1][h+1][0]==0): cells[w][h][1]-=50; cells[w+1][h+1]=newcell()
+                            elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
+                            elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
+                            elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
+                            else: break
+                        print("C"+str(nextid)+" was born.")
                 if(cells[w][h][2]==-1):
                     try:
                         foodlocation=find.nearestFood(w,h)
