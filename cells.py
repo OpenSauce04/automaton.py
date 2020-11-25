@@ -64,7 +64,6 @@ def cycle():
                     newcoords=move.moveTowards(w,h,cells[w][h][2],cells[w][h][3])
                     nw=newcoords[0]
                     nh=newcoords[1]
-                    print(newcoords)
                     if cells[nw][nh][0]!=0:
                         cellsnew[w][h]=cells[w][h]
                     else:
