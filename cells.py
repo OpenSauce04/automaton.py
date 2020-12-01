@@ -2,14 +2,18 @@ from random import choice
 import glob
 import find
 import move
+from copy import copy, deepcopy
+
 global cellsnew
+global newcellarray
 global nextid
 nextid=0
 def newcell():
     global nextid
     nextid+=1
     return [nextid,40,-1,-1]
-cells=[[[0 for x in range(4)] for y in range(glob.worldSize)] for z in range(glob.worldSize)]
+newcellarray=[[[0 for x in range(4)] for y in range(glob.worldSize)] for z in range(glob.worldSize)]
+cells=new_array = list(map(list, newcellarray))
 cells[int(glob.worldSize/2)][int(glob.worldSize/2)]=newcell()
 
 def ucase(w,h):
@@ -35,10 +39,11 @@ def rcase(w,h):
 def cycle():
     global cellsnew
     global cells
+    global newcellarray
     glob.cycleno+=1
     print("\nCycle "+str(glob.cycleno)+": ")
     glob.cellno=0
-    cellsnew=[[[0 for x in range(4)] for y in range(glob.worldSize)] for z in range(glob.worldSize)]
+    cellsnew = list(map(list, newcellarray))
     for h in range(glob.worldSize):
         for w in range(glob.worldSize):
             if (cells[w][h][0]!=0):
