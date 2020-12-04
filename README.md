@@ -10,3 +10,5 @@ You need to make sure you have python 3 installed on you computer. Once you have
 &nbsp;&nbsp;&nbsp;or
 
 2. Double click the `__main__.py` file in the code folder
+
+Note: Adding the `-q` option to the run command will make the program only output the cycle number, cell count and death count to the terminal, and not the actions of individual cells.
