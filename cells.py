@@ -81,7 +81,10 @@ def cycle():
                         'r': rcase
                     }
                     movefunction=choice(list(moveswitch.values()))
-                    movefunction(w,h)
+                    try:
+                        movefunction(w,h)
+                    except: # Tried to move over world border, don't move over
+                        print("C"+str(cells[w][h][0])+": Hit the world border")
                 else: # Knows food whereabouts, move towards
                     newcoords=move.moveTowards(w,h,cells[w][h][2],cells[w][h][3])
                     nw=newcoords[0]
