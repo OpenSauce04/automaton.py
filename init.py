@@ -1,4 +1,6 @@
+import sys
 import glob
+import flag
 from generateWorld import generateWorld
 def init():
     print("Initializing variables...")
@@ -8,3 +10,8 @@ def init():
     glob.deathcount = 0
     print(" Generating World ")
     glob.cells = generateWorld()
+    flag.verbose = True
+    try:
+        if sys.argv[1].lower() == "-q": flag.verbose=False
+    except:
+        pass

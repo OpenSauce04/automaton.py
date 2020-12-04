@@ -3,6 +3,7 @@ import glob
 import find
 import move
 from copy import copy, deepcopy
+import flag
 
 global cellsnew
 global newcellarray
@@ -49,7 +50,7 @@ def cycle():
             if (cells[w][h][0]!=0):
                 glob.cellno+=1
                 if (glob.world[w][h] == 'f'):
-                    print("C"+str(cells[w][h][0])+": Reached food")
+                    if flag.verbose: print("C"+str(cells[w][h][0])+": Reached food")
                     cells[w][h][2] = -1
                     glob.world[w][h]='g'
                     cells[w][h][1]+=20
@@ -64,11 +65,11 @@ def cycle():
                             elif (cells[w+1][h-1][0]==0): cells[w][h][1]-=50; cells[w+1][h-1]=newcell()
                             elif (cells[w-1][h-1][0]==0): cells[w][h][1]-=50; cells[w-1][h-1]=newcell()
                             else: break
-                        print("C"+str(nextid)+" was born.")
+                        if flag.verbose: print("C"+str(nextid)+" was born.")
                 if(cells[w][h][2]==-1):
                     try:
                         foodlocation=find.nearestFood(w,h)
-                        print("C"+str(cells[w][h][0])+": Found food at "+str(foodlocation)+", Travelling...")
+                        if flag.verbose: print("C"+str(cells[w][h][0])+": Found food at "+str(foodlocation)+", Travelling...")
                         cells[w][h][2]=foodlocation[0]
                         cells[w][h][3]=foodlocation[1]
                     except:
@@ -84,7 +85,7 @@ def cycle():
                     try:
                         movefunction(w,h)
                     except: # Tried to move over world border, don't move over
-                        print("C"+str(cells[w][h][0])+": Hit the world border")
+                        if flag.verbose: print("C"+str(cells[w][h][0])+": Hit the world border")
                 else: # Knows food whereabouts, move towards
                     newcoords=move.moveTowards(w,h,cells[w][h][2],cells[w][h][3])
                     nw=newcoords[0]
@@ -93,13 +94,13 @@ def cycle():
                         cellsnew[w][h]=cells[w][h]
                     else:
                         cellsnew[nw][nh]=cells[w][h]
-                print("C"+str(cells[w][h][0])+": Moved to "+str(w)+", "+str(h)+"; Now has "+str(cells[w][h][1])+" food")
+                if flag.verbose: print("C"+str(cells[w][h][0])+": Moved to "+str(w)+", "+str(h)+"; Now has "+str(cells[w][h][1])+" food")
                 cells[w][h][1]-=1
                 if cells[w][h][1]<=0:
-                    print("C"+str(cells[w][h][0])+": Starved to death")
+                    if flag.verbose: print("C"+str(cells[w][h][0])+": Starved to death")
                     glob.deathcount+=1
                     cellsnew[w][h]=[0,0]
-    print('-'*17)
+    if flag.verbose: print('-'*17)
     print("Cell count:  "+str(glob.cellno))
     print("Death count: "+str(glob.deathcount))
     cells=cellsnew
