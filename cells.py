@@ -69,7 +69,7 @@ def cycle():
                                 else: break
                             except: pass
                         if flag.verbose: print("C"+str(nextid)+" was born.")
-                if(cells[w][h][2]==-1):
+                if(cells[w][h][2]<=-1):
                     try:
                         foodlocation=find.nearestFood(w,h)
                         if flag.verbose: print("C"+str(cells[w][h][0])+": Found food at "+str(foodlocation)+", Travelling...")
