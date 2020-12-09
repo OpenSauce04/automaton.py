@@ -12,8 +12,8 @@ nextid=0
 def newcell():
     global nextid
     nextid+=1
-    return [nextid,40,-1,-1]
-newcellarray=[[[0 for x in range(4)] for y in range(glob.worldSize)] for z in range(glob.worldSize)]
+    return [nextid,40,-1,0]
+newcellarray=[[[0] for y in range(glob.worldSize)] for z in range(glob.worldSize)]
 cells=new_array = list(map(list, newcellarray))
 cells[int(glob.worldSize/2)][int(glob.worldSize/2)]=newcell()
 
@@ -102,7 +102,7 @@ def cycle():
                 if cells[w][h][1]<=0:
                     if flag.verbose: print("C"+str(cells[w][h][0])+": Starved to death")
                     glob.deathcount+=1
-                    cellsnew[w][h]=[0,0]
+                    cellsnew[w][h]=[0]
     if flag.verbose: print('-'*17)
     print("Cell count:  "+str(glob.cellno))
     print("Death count: "+str(glob.deathcount))
